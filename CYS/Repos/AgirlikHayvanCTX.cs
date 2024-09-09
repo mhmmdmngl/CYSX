@@ -1,0 +1,47 @@
+﻿using CYS.Models;
+using Dapper;
+using MySql.Data.MySqlClient;
+
+namespace CYS.Repos
+{
+	public class AgirlikHayvanCTX
+	{
+		public List<agirlikHayvan> agirlikHayvanList(string sorgu, object param)
+		{
+			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			{
+				var list = connection.Query<agirlikHayvan>(sorgu, param).ToList();
+
+				return list;
+			}
+		}
+
+		public agirlikHayvan agirlikHayvanTek(string sorgu, object param)
+		{
+			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			{
+				var item = connection.Query<agirlikHayvan>(sorgu, param).FirstOrDefault();
+
+				return item;
+			}
+		}
+
+		public int agirlikHayvanEkle(agirlikHayvan kriter)
+		{
+			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			{
+				var item = connection.Execute("insert into agirlikhayvan (hayvanId, agirlikId, requestId) values (@hayvanId, @agirlikId, @requestId)", kriter);
+				return item;
+			}
+		}
+
+		public int agirlikHayvanGuncelle(agirlikHayvan kriter)
+		{
+			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			{
+				var item = connection.Execute("update agirlikhayvan set hayvanId = @hayvanId,agirlikId=@agirlikId, requestId = @requestId isActive = @isActive where id = @id", kriter);
+				return item;
+			}
+		}
+	}
+}
