@@ -1,0 +1,16 @@
++--[ED25519 256]--+
+|   .o. ++*+      |
+|   . .+.OB..     |
+|  . +  *=.E      |
+|   * ...oB o     |
+|  +  ...S o      |
+| .  . ..         |
+|oo . o .         |
+|+o+ * .          |
+|+o.o =o.         |
++----[SHA256]-----+
+
+
+
+public key
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHuts5vpHWbM/1EazDNqsGg+9HeRxINV0XRwni++PXJS algoritmauzmani@gmail.com
