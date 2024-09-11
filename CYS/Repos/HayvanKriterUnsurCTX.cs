@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<HayvanKriterUnsur> HayvanKriterUnsurList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<HayvanKriterUnsur>(sorgu, param).ToList();
 				KriterUnsurCTX kctx = new KriterUnsurCTX();
@@ -26,7 +26,7 @@ namespace CYS.Repos
 
 		public HayvanKriterUnsur HayvanKriterUnsurTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<HayvanKriterUnsur>(sorgu, param).FirstOrDefault();
 				KriterUnsurCTX kctx = new KriterUnsurCTX();
@@ -42,7 +42,7 @@ namespace CYS.Repos
 
 		public int HayvanKriterUnsurEkle(HayvanKriterUnsur kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into hayvankriterunsur (hayvanId, kriterUnsurId) values (@hayvanId, @kriterUnsurId)", kriter);
 				return item;
@@ -51,7 +51,7 @@ namespace CYS.Repos
 
 		public int HayvanKriterUnsurGuncelle(HayvanKriterUnsur hayvan)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update hayvankriterunsur set hayvanId = @hayvanId, kriterUnsurId = @kriterUnsurId, isActive = @isActive where id = @id", hayvan);
 				return item;

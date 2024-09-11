@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<olcumSession> olcumSessionList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<olcumSession>(sorgu, param).ToList();
 
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
 		public olcumSession olcumTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<olcumSession>(sorgu, param).FirstOrDefault();
 
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
 		public int insert(olcumSession ol)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into olcumsession (sessionGuid, tarih) values (@sessionGuid, @tarih)", ol);
 				return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
 		public int update(olcumSession ol)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update  olcumsession set sessionGuid = @sessionGuid,tarih=@tarih where id = @id", ol);
 				return item;

@@ -14,5 +14,8 @@
 		public DateTime tarih { get; set; }
 		public float cikisbeklemeagirligi { get; set; }
 		public float minimumhassasiyetagirlik { get; set; }
+		public int cihazId { set; get; }
+		public int isTamamlandi { set; get; }
+		public DateTime	tamamlanmaTarihi { set; get; }
 	}
 }

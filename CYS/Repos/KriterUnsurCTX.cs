@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<KriterUnsur> kriterUnsurList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<KriterUnsur>(sorgu, param).ToList();
 				KriterCTX kctx = new KriterCTX();
@@ -21,7 +21,7 @@ namespace CYS.Repos
 
 		public KriterUnsur kriterUnsurTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<KriterUnsur>(sorgu, param).FirstOrDefault();
 				KriterCTX kctx = new KriterCTX();
@@ -34,7 +34,7 @@ namespace CYS.Repos
 
 		public int KriterUnsurEkle(KriterUnsur kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into kriterunsur (kriterId, unsurAdi) values (@kriterId, @unsurAdi)", kriter);
 				return item;
@@ -43,7 +43,7 @@ namespace CYS.Repos
 
 		//public int kriterGuncelle(Kriter kriter)
 		//{
-		//	using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+		//	using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 		//	{
 		//		var item = connection.Execute("update kriter set kriterAdi = @kriterAdi,isActive = @isActive where id = @id", kriter);
 		//		return item;

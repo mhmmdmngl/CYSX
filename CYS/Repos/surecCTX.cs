@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<surec> surecList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<surec>(sorgu, param).ToList();
 				UserCTX uctx = new UserCTX();
@@ -23,7 +23,7 @@ namespace CYS.Repos
 
 		public surec surecTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<surec>(sorgu, param).FirstOrDefault();
 				UserCTX uctx = new UserCTX();
@@ -36,7 +36,7 @@ namespace CYS.Repos
 
 		public int surecEkle(surec kategori)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into surec (requestId, userId) values (@requestId, @userId)", kategori);
 				return item;
@@ -45,7 +45,7 @@ namespace CYS.Repos
 
 		public int surecGuncelle(surec surec)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update surec set requestId = @requestId, userId = @userId, tamamlandi = @tamamlandi, tamamlanmaTarihi = @tamamlanmaTarihi where id = @id", surec);
 				return item;

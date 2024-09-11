@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<AgirlikOlcum> agirlikOlcumList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<AgirlikOlcum>(sorgu, param).ToList();
 				UserCTX uctx = new UserCTX();
@@ -22,7 +22,7 @@ namespace CYS.Repos
 
 		public AgirlikOlcum agirlikOlcumTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<AgirlikOlcum>(sorgu, param).FirstOrDefault();
 				UserCTX uctx = new UserCTX();
@@ -36,7 +36,7 @@ namespace CYS.Repos
 		{
 
 
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into agirlikolcum (userId,agirlikOlcumu, requestId) values (@userId,@agirlikOlcumu, @requestId)", hayvan);
 				return item;
@@ -45,7 +45,7 @@ namespace CYS.Repos
 
 		public int agirlikOlcumGuncelle(AgirlikOlcum hayvan)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update agirlikolcum set userId = @userId,agirlikOlcumu=@agirlikOlcumu, aktif = @aktif, requestId = @requestId where id = @id", hayvan);
 				return item;

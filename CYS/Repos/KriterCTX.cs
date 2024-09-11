@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<Kriter> kriterList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<Kriter>(sorgu, param).ToList();
 				
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
 		public Kriter kriterTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<Kriter>(sorgu, param).FirstOrDefault();
 				
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
 		public int KriterEkle(Kriter kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into kriter (kriterAdi) values (@kriterAdi)", kriter);
 				return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
 		public int kriterGuncelle(Kriter kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update kriter set kriterAdi = @kriterAdi,isActive = @isActive where id = @id", kriter);
 				return item;

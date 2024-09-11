@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 public class processmanagementCTX
 {
-	private readonly string _connectionString = "Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;";
+	private readonly string _connectionString = "Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;";
 
 	// Get All (cihazList formatında)
 	public List<processmanagement> GetAll(string sorgu, object param)
@@ -31,8 +31,8 @@ public class processmanagementCTX
 	{
 		using (var connection = new MySqlConnection(_connectionString))
 		{
-			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik) " +
-											"VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik)", entity);
+			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi) " +
+                                            "VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, isTamamlandi)", entity);
 			return result;
 		}
 	}
@@ -42,7 +42,7 @@ public class processmanagementCTX
 	{
 		using (var connection = new MySqlConnection(_connectionString))
 		{
-			var result = connection.Execute("UPDATE processmanagement SET guid = @guid, hayvangirdi = @hayvangirdi, ilkkapikapandi = @ilkkapikapandi, kupeokundu = @kupeokundu, okunankupe = @okunankupe, sonagirlikalindimi = @sonagirlikalindimi, sonagirlik = @sonagirlik, cikiskapisiacildimi = @cikiskapisiacildimi, tarih = @tarih, cikisbeklemeagirligi = @cikisbeklemeagirligi, minimumhassasiyetagirlik = @minimumhassasiyetagirlik WHERE id = @id", entity);
+			var result = connection.Execute("UPDATE processmanagement SET guid = @guid, hayvangirdi = @hayvangirdi, ilkkapikapandi = @ilkkapikapandi, kupeokundu = @kupeokundu, okunankupe = @okunankupe, sonagirlikalindimi = @sonagirlikalindimi, sonagirlik = @sonagirlik, cikiskapisiacildimi = @cikiskapisiacildimi, tarih = @tarih, cikisbeklemeagirligi = @cikisbeklemeagirligi, minimumhassasiyetagirlik = @minimumhassasiyetagirlik, cihazId = @cihazId, isTamamlandi = @isTamamlandi WHERE id = @id", entity);
 			return result;
 		}
 	}

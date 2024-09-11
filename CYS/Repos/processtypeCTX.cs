@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<processtype> processtypeList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<processtype>(sorgu, param).ToList();
 
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
 		public processtype processtypeTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<processtype>(sorgu, param).FirstOrDefault();
 
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
 		public int processtypeEkle(processtype kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into processtype ( processAdi, processKodu) values (@processAdi, @processKodu)", kriter);
 				return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
 		public int processtypeGuncelle(processtype kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update processtype set processAdi = @processAdi,processKodu=@processKodu where id = @id", kriter);
 				return item;

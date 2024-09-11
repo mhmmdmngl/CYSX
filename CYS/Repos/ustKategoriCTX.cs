@@ -8,7 +8,7 @@ namespace CYS.Repos
     {
         public List<Ustkategori> ustKategoriList(string sorgu, object param)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var list = connection.Query<Ustkategori>(sorgu, param).ToList();
                
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
         public Ustkategori ustKategoriTek(string sorgu, object param)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Query<Ustkategori>(sorgu, param).FirstOrDefault();
                
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
         public int ustKategoriEkle(Ustkategori ustkategori)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Execute("insert into  ustkategori (name) values (@name)", ustkategori);
                 return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
         public int ustKategoriGuncelle(Ustkategori ustkategori)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Execute("update  ustkategori set name = @name where id = @id", ustkategori);
                 return item;

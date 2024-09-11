@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<soyagaci> soyagaciList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<soyagaci>(sorgu, param).ToList();
 				HayvanCTX uctx = new HayvanCTX();
@@ -24,7 +24,7 @@ namespace CYS.Repos
 
 		public soyagaci soyagaciTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<soyagaci>(sorgu, param).FirstOrDefault();
 				HayvanCTX uctx = new HayvanCTX();
@@ -39,7 +39,7 @@ namespace CYS.Repos
 
 		public int soyagaciEkle(soyagaci soyagaci)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into soyagaci ( ustHayvanId, hayvanId) values (@ustHayvanId, @hayvanId)", soyagaci);
 				return item;
@@ -48,7 +48,7 @@ namespace CYS.Repos
 
 		public int soyagaciGuncelle(soyagaci soyagaci)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update soyagaci set ustHayvanId = @ustHayvanId,hayvanId=@hayvanId, isActive = @isActive where id = @id", soyagaci);
 				return item;

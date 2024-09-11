@@ -4,88 +4,102 @@ using MySql.Data.MySqlClient;
 
 namespace CYS.Repos
 {
-	public class HayvanCTX
-	{
-		public List<Hayvan> hayvanList(string sorgu, object param)
-		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var list = connection.Query<Hayvan>(sorgu, param).ToList();
-				UserCTX uctx = new UserCTX();
-				KategoriCTX kctx = new KategoriCTX();
-				HayvanKriterUnsurCTX hkuCTX = new HayvanKriterUnsurCTX();
-				foreach (var item in list)
-				{
-					item.user = uctx.userTek("select * from user where id = @id", new { id = item.userId });
-					item.kategori = kctx.KategoriTek("select * from kategori where id = @id", new {id = item.kategoriId});
-					item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from hayvankriterunsur where hayvanId = @hayvanId and isActive = 1", new { hayvanId = item.id });
-				}
-				return list;
-			}
-		}
-		public List<Hayvan> hayvanListSadece(string sorgu, object param)
-		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var list = connection.Query<Hayvan>(sorgu, param).ToList();
-				
-				return list;
-			}
-		}
+    public class HayvanCTX
+    {
+        private readonly string connectionString = "Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;";
 
-		public Hayvan hayvanTek(string sorgu, object param)
-		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var item = connection.Query<Hayvan>(sorgu, param).FirstOrDefault();
-				UserCTX uctx = new UserCTX();
-				HayvanKriterUnsurCTX hkuCTX = new HayvanKriterUnsurCTX();
+        private MySqlConnection GetConnection()
+        {
+            return new MySqlConnection(connectionString);
+        }
 
-				KategoriCTX kctx = new KategoriCTX();
+        public List<Hayvan> hayvanList(string sorgu, object param)
+        {
+            using (var connection = GetConnection())
+            {
+                var list = connection.Query<Hayvan>(sorgu, param).ToList();
+                var uctx = new UserCTX();
+                var kctx = new KategoriCTX();
+                var hkuCTX = new HayvanKriterUnsurCTX();
 
+                foreach (var item in list)
+                {
+                    item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
+                    item.kategori = kctx.KategoriTek("SELECT * FROM kategori WHERE id = @id", new { id = item.kategoriId });
+                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("SELECT * FROM hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
+                }
+                return list;
+            }
+        }
+
+        public List<Hayvan> hayvanListSadece(string sorgu, object param)
+        {
+            using (var connection = GetConnection())
+            {
+                return connection.Query<Hayvan>(sorgu, param).ToList();
+            }
+        }
+
+        public Hayvan hayvanTek(string sorgu, object param)
+        {
+            using (var connection = GetConnection())
+            {
+                var item = connection.QueryFirstOrDefault<Hayvan>(sorgu, param);
                 if (item != null)
-				{
-                    item.user = uctx.userTek("select * from user where id = @id", new { id = item.userId });
-                    item.kategori = kctx.KategoriTek("select * from kategori where id = @id", new { id = item.kategoriId });
-					item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from hayvankriterunsur where hayvanId = @hayvanId and isActive = 1", new { hayvanId = item.id });
+                {
+                    var uctx = new UserCTX();
+                    var kctx = new KategoriCTX();
+                    var hkuCTX = new HayvanKriterUnsurCTX();
 
-				}
-				return item;
-			}
-		}
+                    item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
+                    item.kategori = kctx.KategoriTek("SELECT * FROM kategori WHERE id = @id", new { id = item.kategoriId });
+                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("SELECT * FROM hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
+                }
+                return item;
+            }
+        }
 
-		public Hayvan hayvanTekSadece(string sorgu, object param)
-		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var item = connection.Query<Hayvan>(sorgu, param).FirstOrDefault();
-				UserCTX uctx = new UserCTX();
-				HayvanKriterUnsurCTX hkuCTX = new HayvanKriterUnsurCTX();
+        public Hayvan hayvanTekSadece(string sorgu, object param)
+        {
+            using (var connection = GetConnection())
+            {
+                return connection.QueryFirstOrDefault<Hayvan>(sorgu, param);
+            }
+        }
 
-				KategoriCTX kctx = new KategoriCTX();
+        public int hayvanEkle(Hayvan hayvan)
+        {
+            using (var connection = GetConnection())
+            {
+                const string query = @"
+					INSERT INTO hayvan 
+					(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId) 
+					VALUES 
+					(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId)";
 
-				
-				return item;
-			}
-		}
+                return connection.Execute(query, hayvan);
+            }
+        }
 
-		public int hayvanEkle(Hayvan hayvan)
-		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var item = connection.Execute("insert into hayvan (rfidKodu,kupeIsmi,cinsiyet,agirlik, userId, kategoriId, requestId) values (@rfidKodu,@kupeIsmi,@cinsiyet,@agirlik, @userId, @kategoriId, @requestId)", hayvan);
-				return item;
-			}
-		}
+        public int hayvanGuncelle(Hayvan hayvan)
+        {
+            hayvan.sonGuncelleme = DateTime.Now;
+            using (var connection = GetConnection())
+            {
+                const string query = @"
+					UPDATE hayvan 
+					SET rfidKodu = @rfidKodu, 
+						kupeIsmi = @kupeIsmi, 
+						cinsiyet = @cinsiyet, 
+						agirlik = @agirlik, 
+						userId = @userId, 
+						kategoriId = @kategoriId, 
+						aktif = @aktif, 
+						requestId = @requestId 
+					WHERE id = @id";
 
-		public int hayvanGuncelle(Hayvan hayvan)
-		{
-			hayvan.sonGuncelleme = DateTime.Now;
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
-			{
-				var item = connection.Execute("update hayvan set rfidKodu = rfidKodu,kupeIsmi = @kupeIsmi,cinsiyet = @cinsiyet,agirlik = @agirlik, userId= @userId, kategoriId = @kategoriId, aktif = @aktif, requestId = @requestId where id = @id", hayvan);
-				return item;
-			}
-		}
-	}
+                return connection.Execute(query, hayvan);
+            }
+        }
+    }
 }

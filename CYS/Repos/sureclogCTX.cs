@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<sureclog> sureclogList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<sureclog>(sorgu, param).ToList();
 				surecCTX uctx = new surecCTX();
@@ -23,7 +23,7 @@ namespace CYS.Repos
 
 		public sureclog sureclogTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<sureclog>(sorgu, param).FirstOrDefault();
 				surecCTX uctx = new surecCTX();
@@ -36,7 +36,7 @@ namespace CYS.Repos
 
 		public int sureclogEkle(sureclog kategori)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				try {
 					var item = connection.Execute("insert into sureclog (processId, fonksiyonAdi, sorguSonucu, sorguCevap) values (@processId, @fonksiyonAdi, @sorguSonucu, @sorguCevap)", kategori);

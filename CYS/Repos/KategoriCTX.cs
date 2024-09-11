@@ -8,7 +8,7 @@ namespace CYS.Repos
     {
         public List<Kategori> KategoriList(string sorgu, object param)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var list = connection.Query<Kategori>(sorgu, param).ToList();
                 ustKategoriCTX uctx = new ustKategoriCTX();
@@ -21,7 +21,7 @@ namespace CYS.Repos
 
         public Kategori KategoriTek(string sorgu, object param)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Query<Kategori>(sorgu, param).FirstOrDefault();
                 ustKategoriCTX uctx = new ustKategoriCTX();
@@ -34,7 +34,7 @@ namespace CYS.Repos
 
         public int KategoriEkle(Kategori kategori)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Execute("insert into kategori (ustKategoriId, kategoriAdi, resim) values (@ustKategoriId, @kategoriAdi, @resim)", kategori);
                 return item;
@@ -43,7 +43,7 @@ namespace CYS.Repos
 
         public int KategoriGuncelle(Kategori kategori)
         {
-            using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+            using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
             {
                 var item = connection.Execute("update kategori set ustKategoriId = @ustKategoriId, kategoriAdi = @kategoriAdi, resim = @resim, isActive = @isActive where id = @id", kategori);
                 return item;

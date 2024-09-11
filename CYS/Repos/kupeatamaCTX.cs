@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<KupeAtama> kupeAtamaOlcumList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<KupeAtama>(sorgu, param).ToList();
 				UserCTX uctx = new UserCTX();
@@ -22,7 +22,7 @@ namespace CYS.Repos
 
 		public KupeAtama kupeAtamaTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<KupeAtama>(sorgu, param).FirstOrDefault();
 				
@@ -36,7 +36,7 @@ namespace CYS.Repos
 		public int kupeAtamaEkle(KupeAtama hayvan)
 		{
 			hayvan.tarih = DateTime.Now;
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into kupeatama ( userId, kupeRfid, tarih, requestId) values (@userId, @kupeRfid, @tarih, @requestId)", hayvan);
 				return item;
@@ -45,7 +45,7 @@ namespace CYS.Repos
 
 		public int kupeAtamaGuncelle(KupeAtama hayvan)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update  kupeatama set userId = @userId,kupeRfid=@kupeRfid, aktif = @aktif, requestId = @requestId where id = @id", hayvan);
 				return item;

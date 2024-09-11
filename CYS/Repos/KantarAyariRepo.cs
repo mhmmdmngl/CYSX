@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<KantarAyari> kantarAyariList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<KantarAyari>(sorgu, param).ToList();
 				
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
 		public KantarAyari KantarAyariTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<KantarAyari>(sorgu, param).FirstOrDefault();
 				
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
 		public int KantarAyariEkle(KantarAyari kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into kantarayari (requestId, tare3, tare4, tare5, esikAgirlik, tarih) values (@requestId, @tare3, @tare4, @tare5, @esikAgirlik, @tarih)", kriter);
 				return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
 		public int KantarAyariGuncelle(KantarAyari kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update kantarayari set requestId = @requestId, tare3 = @tare3, tare4 = @tare4, tare5 = @tare5, esikAgirlik = @esikAgirlik, tarih = @tarih where id = @id", kriter);
 				return item;

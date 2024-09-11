@@ -8,7 +8,7 @@ namespace CYS.Repos
 	{
 		public List<cihaz> cihazList(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var list = connection.Query<cihaz>(sorgu, param).ToList();
 
@@ -18,7 +18,7 @@ namespace CYS.Repos
 
 		public cihaz cihazTek(string sorgu, object param)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Query<cihaz>(sorgu, param).FirstOrDefault();
 
@@ -28,7 +28,7 @@ namespace CYS.Repos
 
 		public int cihazEkle(cihaz kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("insert into cihaz (cihazId, cihazAdi, cihazIp, aktif) values (@cihazId, @cihazAdi, @cihazIp, @aktif)", kriter);
 				return item;
@@ -37,7 +37,7 @@ namespace CYS.Repos
 
 		public int cihazGuncelle(processtype kriter)
 		{
-			using (var connection = new MySqlConnection("Server=185.106.20.137;Database=CYS;User Id=abulu;Password=Merlab.2642;"))
+			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
 				var item = connection.Execute("update cihaz set cihazId = @cihazId, cihazAdi= @cihazAdi, cihazIp = @cihazIp, aktif = @aktif where id = @id", kriter);
 				return item;
