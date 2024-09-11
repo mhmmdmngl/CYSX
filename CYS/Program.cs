@@ -6,9 +6,10 @@ builder.Services.AddSession(so =>
 {
 	so.IdleTimeout = TimeSpan.FromSeconds(6000);
 });
+builder.Services.AddMemoryCache();
+
 var app = builder.Build();
 
-builder.Services.AddMemoryCache();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

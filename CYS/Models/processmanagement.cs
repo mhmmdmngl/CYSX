@@ -16,6 +16,8 @@
 		public float minimumhassasiyetagirlik { get; set; }
 		public int cihazId { set; get; }
 		public int isTamamlandi { set; get; }
-		public DateTime	tamamlanmaTarihi { set; get; }
+		public DateTime	tamamlanmatarihi { set; get; }
+		public int mevcutmod { set; get; }
+		public int hayvanid { set; get; }
 	}
 }

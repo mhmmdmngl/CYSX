@@ -31,24 +31,44 @@ public class processmanagementCTX
 	{
 		using (var connection = new MySqlConnection(_connectionString))
 		{
-			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi) " +
-                                            "VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, isTamamlandi)", entity);
+			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi, mevcutMod, hayvanid) " +
+                                            "VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, @isTamamlandi, @mevcutMod, @hayvanid)", entity);
 			return result;
 		}
 	}
 
-	// Update (cihazGuncelle formatında)
-	public int Update(processmanagement entity)
-	{
-		using (var connection = new MySqlConnection(_connectionString))
-		{
-			var result = connection.Execute("UPDATE processmanagement SET guid = @guid, hayvangirdi = @hayvangirdi, ilkkapikapandi = @ilkkapikapandi, kupeokundu = @kupeokundu, okunankupe = @okunankupe, sonagirlikalindimi = @sonagirlikalindimi, sonagirlik = @sonagirlik, cikiskapisiacildimi = @cikiskapisiacildimi, tarih = @tarih, cikisbeklemeagirligi = @cikisbeklemeagirligi, minimumhassasiyetagirlik = @minimumhassasiyetagirlik, cihazId = @cihazId, isTamamlandi = @isTamamlandi WHERE id = @id", entity);
-			return result;
-		}
-	}
+    // Update (cihazGuncelle formatında)
+    public int Update(processmanagement entity)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            // SQL sorgusu
+            var sql = @"UPDATE processmanagement 
+                    SET guid = @guid, 
+                        hayvangirdi = @hayvangirdi, 
+                        ilkkapikapandi = @ilkkapikapandi, 
+                        kupeokundu = @kupeokundu, 
+                        okunankupe = @okunankupe, 
+                        sonagirlikalindimi = @sonagirlikalindimi, 
+                        sonagirlik = @sonagirlik, 
+                        cikiskapisiacildimi = @cikiskapisiacildimi, 
+                        tarih = @tarih, 
+                        cikisbeklemeagirligi = @cikisbeklemeagirligi, 
+                        minimumhassasiyetagirlik = @minimumhassasiyetagirlik, 
+                        cihazId = @cihazId, 
+                        isTamamlandi = @isTamamlandi, 
+                        mevcutMod = @mevcutMod 
+                    WHERE id = @id";
 
-	// Delete
-	public int Delete(int id)
+            // Sorguyu yürütüyoruz
+            var result = connection.Execute(sql, entity);
+            return result;
+        }
+    }
+
+
+    // Delete
+    public int Delete(int id)
 	{
 		using (var connection = new MySqlConnection(_connectionString))
 		{
