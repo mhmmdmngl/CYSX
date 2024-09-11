@@ -53,7 +53,7 @@ namespace CYS.Controllers
                     cikiskapisiacildimi = 0,
                     tarih = DateTime.Now,
                     cikisbeklemeagirligi = 5.0f,  // Varsayılan bir çıkış hassasiyet ağırlığı
-                    minimumhassasiyetagirlik = 100.0f,  // Varsayılan bir giriş hassasiyet ağırlığı
+                    minimumhassasiyetagirlik = 5.0f,  // Varsayılan bir giriş hassasiyet ağırlığı
                     isTamamlandi = 0,
                     mevcutmod = 1, // Varsayılan bir mod değeri veriyoruz
                     tamamlanmatarihi = DateTime.MinValue
