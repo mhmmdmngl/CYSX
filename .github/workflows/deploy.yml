@@ -3,7 +3,7 @@ name: Deploy to Ubuntu Server
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
     - name: Deploy to server
       run: |
         ssh -o StrictHostKeyChecking=no root@104.248.114.104 << EOF
-        cd /root/CYSX/CYS && git pull origin main
+        cd /root/CYSX/CYS && git pull origin master
         dotnet publish --configuration Release --output /root/CYSX/CYS/bin/Release/net8.0
         sudo systemctl restart CYSX.service
         EOF
