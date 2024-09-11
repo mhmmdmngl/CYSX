@@ -1,4 +1,59 @@
-﻿
+﻿<style>
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 34px;
+	}
+
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		transition: 0.4s;
+		border-radius: 34px;
+	}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			transition: 0.4s;
+			border-radius: 50%;
+		}
+
+	input:checked + .slider {
+		background-color: #2196F3;
+	}
+
+		input:checked + .slider:before {
+			transform: translateX(26px);
+		}
+
+	/* Rounded sliders */
+	.slider.round {
+		border-radius: 34px;
+	}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+
+</style>
 <div class="modal fade" id="kt_modal_add_user" tabindex="-1" aria-hidden="true">
 	<!--begin::Modal dialog-->
 	<div class="modal-dialog modal-dialog-centered mw-650px">
@@ -42,126 +97,75 @@
 							<!--end::Input-->
 						</div>
 						<!--begin::Input group-->
-						<div class="fv-row mb-4 row">
-							<div class="col-8">
+						<div class="fv-row mb-4 row" style="background-color: #fff; border: 2px solid #dee2e6; border-radius: 5px; padding: 10px;">
+							<div class="col-6">
 								<!--begin::Label-->
-								<label class="required fw-bold fs-6 mb-2">Ağırlık</label>
+								<label class="required fw-bold fs-6 mb-2 text-primary">Ağırlık</label>
 								<!--end::Label-->
 								<!--begin::Input-->
 								<input type="text" name="agirlik-name" id="agirlikTxt" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Ağırlık Girin" />
 								<label class="fw-bold fs-6 mb-2" id="tarihlbl"></label>
 							</div>
-							<div class="col-4">
-								<label class="required fw-bold fs-6 mb-2">Ağırlık Ölç</label>
-
-								<input type="button" onclick="agirlikSurecManuel()" id="btnBasla" class="form-control  mb-3  btn btn-info" value="Ölçüm" />
-
-							</div>
-							<!--end::Input-->
-						</div>
-
-						<div class="fv-row mb-4 row">
-							<div class="col-8">
+							<div class="col-6">
 								<!--begin::Label-->
-								<label class="required fw-bold fs-6 mb-2">Eid</label>
+								<label class="required fw-bold fs-6 mb-2 text-primary">Eid</label>
 								<!--end::Label-->
 								<!--begin::Input-->
 								<input type="text" name="user_name" id="rfidTxt" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="RFID Okutun" />
 								<label class="fw-bold fs-6 mb-2" id="tarihlbl"></label>
 							</div>
-							<div class="col-4">
-								<label class="required fw-bold fs-6 mb-2">RFID Ölç</label>
-
-								<input type="button" onclick="rfidSurecManuel()" id="btnBasla" class="form-control  mb-3  btn btn-info" value="RFID Ölç" />
-
-							</div>
-							
 							<!--end::Input-->
 						</div>
+
+						<div class="fv-row mb-4 row" style="background-color: #f0f0f5; border: 2px solid #adb5bd; border-radius: 5px; padding: 10px;">
+							<div class="col-md-6">
+								<center><label class="required fw-bold fs-6 mb-2 text-success">Süreç Tekrarı</label></center>
+								<input type="text" name="surectekrar" placeholder="Kaç kez tekrar edileceğini girin" class="form-control mb-3 btn" value="" />
+							</div>
+							<div class="col-md-6">
+								<center><label class="required fw-bold fs-6 mb-2 text-success">Sınırsız Mod</label></center>
+								<label class="switch">
+									<input type="checkbox" name="sinirsizmod" id="sinirsizmod">
+									<span class="slider round"></span>
+								</label>
+							</div>
+						</div>
+
 
 						<div class="fv-row mb-4 row">
-							<div class="col-3" style="background-color:  #f0f0f5;">
+							<div class="col-6" style="background-color: #f0f0f5;">
 								<center><label class="required fw-bold fs-6 mb-2">Giriş Kapısı</label></center>
-
-								<div class="row" >
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(6);" class="form-control  mb-3  btn btn-success" value="" />
-									</div>
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(17);" class="form-control  mb-3  btn btn-danger" value="" />
-									</div>
-								</div>
-								
-								
+								<input type="text" name="girismax" placeholder="minimum ağırlık kg" class="form-control mb-3 btn" value="5" />
 							</div>
-							<div class="col-3">
+							<div class="col-6" style="background-color: #f0f0f5;">
+								<center><label class="required fw-bold fs-6 mb-2">Çıkış Kapısı</label></center>
+								<input type="text" name="cikismin" placeholder="maximum ağırlık kg" class="form-control mb-3 btn" value="5" />
+							</div>
+						</div>
+						<div class="fv-row mb-4 row">
+							
+							<div class="col-4">
 								<center><label class="required fw-bold fs-6 mb-2">Yön 1</label></center>
 
-								<div class="row">
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(7);" class="form-control  mb-3  btn btn-success" value="" />
-									</div>
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(18);" class="form-control  mb-3  btn btn-danger" value="" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-6">
-										<input type="text" name="kapi1Alt" id="idKapi1Alt" class="form-control form-control-solid " value="10" />
-									</div>
-									<div class="col-6">
-										<input type="text" name="kapi1Ust" id="idKapi1Ust" class="form-control form-control-solid " value="20" />
-									</div>
-								</div>
+								<input type="text" name="kapi1Agirlik" placeholder="min" class="form-control mb-3btn btn-success" style="color:white;" value="10" />
 
 							</div>
-							<div class="col-3" style="background-color:  #f0f0f5;">
+							<div class="col-4" style="background-color:  #f0f0f5;">
 								<center><label class="required fw-bold fs-6 mb-2">Yön 2</label></center>
 
-								<div class="row" >
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(8);" class="form-control  mb-3  btn btn-success" value="" />
-									</div>
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(19);" class="form-control  mb-3  btn btn-danger" value="" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-6">
-										<input type="text" name="kapi2Alt" id="idKapi2Alt" class="form-control form-control-solid" value="21"/>
-									</div>
-									<div class="col-6">
-										<input type="text" name="kapi2Ust" id="idKapi2Ust" class="form-control form-control-solid " value="50" />
-									</div>
-								</div>
+								<input type="text" name="kapi2Agirlik" placeholder="min" class="form-control  mb-3btn btn-success" style="color:white;" value="30" />
 
 							</div>
-							<div class="col-3">
+							<div class="col-4">
 								<center><label class="required fw-bold fs-6 mb-2">Yön 3</label></center>
 
-								<div class="row">
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(9);" class="form-control  mb-3  btn btn-success" value="" />
-									</div>
-									<div class="col-6">
-										<input type="button" onclick="kapiAc(20);" class="form-control  mb-3  btn btn-danger" value="" />
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-6">
-										<input type="text" name="kapi3Alt" id="idKapi3Alt" class="form-control form-control-solid"value="51" />
-									</div>
-									<div class="col-6">
-										<input type="text" name="kapi3Ust" id="idKapi3Ust" class="form-control form-control-solid" value="1000" />
-									</div>
-								</div>
+								<input type="text" name="kapi3Agirlik" placeholder="min" class="form-control  mb-3btn btn-success" style="color:white;" value="50" />
 
 							</div>
 							
 
 							<!--end::Input-->
 						</div>
-
 						<div class="fv-row mb-4 row">
 							<div class="col-12">
 
@@ -172,7 +176,6 @@
 
 							<!--end::Input-->
 						</div>
-	
 						<div class="fv-row mb-7">
 							<label class="required fs-6 fw-bold mb-2">Tür Seçin</label>
 							<!--end::Label-->
@@ -289,6 +292,7 @@
 	<!--end::Modal dialog-->
 </div>
 
+@* 
 
 <script>
 	function kapiAc(id)
@@ -315,3 +319,6 @@
 
 	}
 </script>
+
+ *@
+

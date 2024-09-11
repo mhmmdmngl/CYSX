@@ -67,21 +67,35 @@ namespace CYS.Repos
             }
         }
 
-        public int hayvanEkle(Hayvan hayvan)
-        {
-            using (var connection = GetConnection())
-            {
-                const string query = @"
-					INSERT INTO hayvan 
-					(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId) 
-					VALUES 
-					(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId)";
+		public int hayvanEkle(Hayvan hayvan)
+		{
+			if (hayvan.agirlik == null)
+				hayvan.agirlik = "0";
 
-                return connection.Execute(query, hayvan);
-            }
-        }
+			using (var connection = GetConnection())
+			{
+				// İlk sorgu: INSERT işlemini gerçekleştirir
+				const string insertQuery = @"
+			INSERT INTO hayvan 
+			(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId) 
+			VALUES 
+			(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId);";
 
-        public int hayvanGuncelle(Hayvan hayvan)
+				// INSERT işlemi
+				connection.Execute(insertQuery, hayvan);
+
+				// İkinci sorgu: Son eklenen ID'yi almak için
+				const string selectQuery = "SELECT LAST_INSERT_ID();";
+
+				// Son eklenen ID'yi döndürür
+				return connection.QuerySingleOrDefault<int>(selectQuery);
+			}
+		}
+
+
+
+
+		public int hayvanGuncelle(Hayvan hayvan)
         {
             hayvan.sonGuncelleme = DateTime.Now;
             using (var connection = GetConnection())

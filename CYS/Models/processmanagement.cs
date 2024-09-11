@@ -19,5 +19,9 @@
 		public DateTime	tamamlanmatarihi { set; get; }
 		public int mevcutmod { set; get; }
 		public int hayvanid { set; get; }
+		public float kapi1agirlik { get; set; }
+		public float kapi2agirlik { get; set; }
+		public float kapi3agirlik { get; set; }
+
 	}
 }

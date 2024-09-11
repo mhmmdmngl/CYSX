@@ -31,8 +31,8 @@ public class processmanagementCTX
 	{
 		using (var connection = new MySqlConnection(_connectionString))
 		{
-			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi, mevcutMod, hayvanid) " +
-                                            "VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, @isTamamlandi, @mevcutMod, @hayvanid)", entity);
+			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi, mevcutMod, hayvanid, kapi1agirlik, kapi2agirlik, kapi3agirlik) " +
+											"VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, @isTamamlandi, @mevcutMod, @hayvanid,@kapi1agirlik, @kapi2agirlik, @kapi3agirlik)", entity);
 			return result;
 		}
 	}
@@ -57,7 +57,11 @@ public class processmanagementCTX
                         minimumhassasiyetagirlik = @minimumhassasiyetagirlik, 
                         cihazId = @cihazId, 
                         isTamamlandi = @isTamamlandi, 
-                        mevcutMod = @mevcutMod 
+                        mevcutMod = @mevcutMod,
+						hayvanid = @hayvanid,
+kapi1agirlik = @kapi1agirlik,
+kapi2agirlik = @kapi2agirlik,
+kapi3agirlik = @kapi3agirlik
                     WHERE id = @id";
 
             // Sorguyu yürütüyoruz
