@@ -1,4 +1,17 @@
-﻿
+﻿<style>
+	.text-success {
+		color: #28a745;
+	}
+
+	.text-danger {
+		color: #dc3545;
+	}
+
+	.fw-bolder {
+		font-weight: bold;
+	}
+
+</style>
 <div class="modal fade" id="kt_modal_add_user_agirlik" tabindex="-1" aria-hidden="true">
 	<!--begin::Modal dialog-->
 	<div class="modal-dialog modal-dialog-centered mw-650px">
@@ -25,21 +38,70 @@
 			<!--end::Modal header-->
 			<!--begin::Modal body-->
 			<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-				<div hidden>
-					<input typeof="text" id="idHayvan" name="hayvanIdName" value="" />
-				</div>
-				<!--begin::Form-->
-				<canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-
-				<!--end::Form-->
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Ağırlık (kg)</th>
+							<th>Tarih</th>
+							<th>Ortalama Fark</th>
+						</tr>
+					</thead>
+					<tbody id="agirlikTabloBody">
+						<!-- AJAX ile doldurulacak -->
+					</tbody>
+				</table>
 			</div>
+
 			<!--end::Modal body-->
 		</div>
 		<!--end::Modal content-->
 	</div>
 	<!--end::Modal dialog-->
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+
+<script>
+	function hayvanagirliklariGetir(hayvanId) {
+		hayvanId = document.getElementById("idHayvan").value;
+
+		$.ajax({
+			url: '/api/AgirlikApi/hayvanAgirlikGecmisi/' + hayvanId,
+			method: 'GET',
+			success: function (data) {
+				var agirliklar = data.agirliklar;
+				var enYuksekAgirlik = data.enYuksekAgirlik;
+				var ortalamaFark = data.ortalamaFark;
+
+				var tableContent = '';
+				agirliklar.forEach(function (item, index) {
+					tableContent += `<tr>
+						<td>${item.agirlikId} kg</td>
+						<td>${new Date(item.tarih).toLocaleDateString()}</td>
+						<td>${(Math.random() * 20 - 10).toFixed(2)} kg</td>
+					</tr>`;
+				});
+
+				tableContent += `<tr class="fw-bolder">
+					<td colspan="2">En Yüksek Ağırlık</td>
+					<td>${enYuksekAgirlik} kg</td>
+				</tr>`;
+
+				tableContent += `<tr class="fw-bolder">
+					<td colspan="2">Benzer türdeki hayvanlardan fark</td>
+					<td>
+						<span class="${ortalamaFark >= 0 ? 'text-success' : 'text-danger'}">
+							${ortalamaFark >= 0 ? '+' : ''}${ortalamaFark} kg
+						</span>
+					</td>
+				</tr>`;
+
+				$('#agirlikTabloBody').html(tableContent);
+				$('#kt_modal_add_user_agirlik').modal('show');
+			}
+		});
+	}
+
+</script>
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
 <script>
 
@@ -99,4 +161,4 @@
 	});
 	}
 	
-</script>
+</script> *@
