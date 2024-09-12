@@ -40,6 +40,24 @@ namespace CYS.Controllers
 			ViewBag.kriterler = kriterListe();
 			return View(hayvanListesi);
 		}
+		[HttpGet]
+		public IActionResult HayvanListesiJson()
+		{
+			// Oturum kontrolü
+			if (sessionKontrol() == false)
+				return Unauthorized();
+
+			// Kullanıcıyı session'dan al
+			var user = HttpContext.Session.GetString("user");
+			var userObj = JsonConvert.DeserializeObject<User>(user); // Kullanıcı objesini al
+
+			// Hayvanları ilgili kullanıcıya göre sıralı bir şekilde al
+			HayvanCTX hctx = new HayvanCTX();
+			var hayvanListesi = hctx.hayvanList("SELECT * FROM hayvan WHERE userId = @userId AND aktif = 1 ORDER BY id DESC", new { userId = userObj.id });
+
+			// JSON formatında döndür
+			return Json(new { data = hayvanListesi });
+		}
 
 		public IActionResult BuyukBas()
 		{

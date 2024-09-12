@@ -253,8 +253,49 @@ namespace CYS.Controllers
             }
         }
 
+		[HttpPost("tamamla/{cihazId}")]
+		public IActionResult UpdateIsTamamlandiAndTamamlanmaZamaniByCihazId(int cihazId)
+		{
+			try
+			{
+				// İlgili cihazId'deki aktif (isTamamlandi = 0) olan processmanagement kaydını buluyoruz
+				string sorgu = "SELECT * FROM processmanagement WHERE cihazId = @cihazId AND isTamamlandi = 0";
+				var param = new { cihazId };
+
+				var result = _context.Get(sorgu, param);
+
+				if (result == null)
+				{
+					// Eğer kayıt bulunamazsa hata döndürüyoruz
+					return NotFound(new { message = "İlgili cihazId'ye ait aktif bir process kaydı bulunamadı." });
+				}
+
+				// isTamamlandi'yi 1 yapıyoruz ve tamamlanma zamanını güncelliyoruz
+				result.isTamamlandi = 1;
+				result.tamamlanmatarihi = DateTime.Now;
+
+				// Processmanagement tablosundaki kaydı güncelliyoruz
+				_context.Update(result);
+
+				// Güncellenen kaydın bilgilerini döndürüyoruz
+				return Ok(new
+				{
+					id = result.id,
+					cihazId = result.cihazId,
+					isTamamlandi = result.isTamamlandi,
+					tamamlanmatarihi = result.tamamlanmatarihi,
+					message = "Process başarıyla tamamlandı ve güncellendi."
+				});
+			}
+			catch (Exception ex)
+			{
+				// Hata durumunda hata mesajı döndürüyoruz
+				return StatusCode(500, new { message = "Bir hata oluştu", error = ex.Message });
+			}
+		}
 
 
 
-    }
+
+	}
 }
