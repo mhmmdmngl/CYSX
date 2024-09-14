@@ -26,45 +26,50 @@ public class processmanagementCTX
 		}
 	}
 
-	// Insert (cihazEkle formatında)
-	public int Add(processmanagement entity)
-	{
-		using (var connection = new MySqlConnection(_connectionString))
-		{
-			var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi, mevcutMod, hayvanid, kapi1agirlik, kapi2agirlik, kapi3agirlik) " +
-											"VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, @isTamamlandi, @mevcutMod, @hayvanid,@kapi1agirlik, @kapi2agirlik, @kapi3agirlik)", entity);
-			return result;
-		}
-	}
+    // Insert (cihazEkle formatında)
+    public int Add(processmanagement entity)
+    {
+        using (var connection = new MySqlConnection(_connectionString))
+        {
+            var result = connection.Execute("INSERT INTO processmanagement (guid, hayvangirdi, ilkkapikapandi, kupeokundu, okunankupe, sonagirlikalindimi, sonagirlik, cikiskapisiacildimi, tarih, cikisbeklemeagirligi, minimumhassasiyetagirlik, cihazId, isTamamlandi, tamamlanmatarihi, mevcutmod, hayvanid, kapi1agirlik, kapi2agirlik, kapi3agirlik, eklemeguncelleme, girissonrasibekleme, giriskapikapandiktansonrakibekleme, cikiskapisisonrasibekleme, kupeokumasonrasibekleme, sonagirlikbekleme) " +
+                                            "VALUES (@guid, @hayvangirdi, @ilkkapikapandi, @kupeokundu, @okunankupe, @sonagirlikalindimi, @sonagirlik, @cikiskapisiacildimi, @tarih, @cikisbeklemeagirligi, @minimumhassasiyetagirlik, @cihazId, @isTamamlandi, @tamamlanmatarihi, @mevcutmod, @hayvanid, @kapi1agirlik, @kapi2agirlik, @kapi3agirlik, @eklemeguncelleme, @girissonrasibekleme, @giriskapikapandiktansonrakibekleme, @cikiskapisisonrasibekleme, @kupeokumasonrasibekleme, @sonagirlikbekleme)", entity);
+            return result;
+        }
+    }
 
     // Update (cihazGuncelle formatında)
     public int Update(processmanagement entity)
     {
         using (var connection = new MySqlConnection(_connectionString))
         {
-            // SQL sorgusu
             var sql = @"UPDATE processmanagement 
-                    SET guid = @guid, 
-                        hayvangirdi = @hayvangirdi, 
-                        ilkkapikapandi = @ilkkapikapandi, 
-                        kupeokundu = @kupeokundu, 
-                        okunankupe = @okunankupe, 
-                        sonagirlikalindimi = @sonagirlikalindimi, 
-                        sonagirlik = @sonagirlik, 
-                        cikiskapisiacildimi = @cikiskapisiacildimi, 
-                        tarih = @tarih, 
-                        cikisbeklemeagirligi = @cikisbeklemeagirligi, 
-                        minimumhassasiyetagirlik = @minimumhassasiyetagirlik, 
-                        cihazId = @cihazId, 
-                        isTamamlandi = @isTamamlandi, 
-                        mevcutMod = @mevcutMod,
-						hayvanid = @hayvanid,
-kapi1agirlik = @kapi1agirlik,
-kapi2agirlik = @kapi2agirlik,
-kapi3agirlik = @kapi3agirlik
-                    WHERE id = @id";
+                SET guid = @guid, 
+                    hayvangirdi = @hayvangirdi, 
+                    ilkkapikapandi = @ilkkapikapandi, 
+                    kupeokundu = @kupeokundu, 
+                    okunankupe = @okunankupe, 
+                    sonagirlikalindimi = @sonagirlikalindimi, 
+                    sonagirlik = @sonagirlik, 
+                    cikiskapisiacildimi = @cikiskapisiacildimi, 
+                    tarih = @tarih, 
+                    cikisbeklemeagirligi = @cikisbeklemeagirligi, 
+                    minimumhassasiyetagirlik = @minimumhassasiyetagirlik, 
+                    cihazId = @cihazId, 
+                    isTamamlandi = @isTamamlandi, 
+                    tamamlanmatarihi = @tamamlanmatarihi, 
+                    mevcutmod = @mevcutmod, 
+                    hayvanid = @hayvanid,
+                    kapi1agirlik = @kapi1agirlik, 
+                    kapi2agirlik = @kapi2agirlik, 
+                    kapi3agirlik = @kapi3agirlik,
+                    eklemeguncelleme = @eklemeguncelleme,
+                    girissonrasibekleme = @girissonrasibekleme,
+                    giriskapikapandiktansonrakibekleme = @giriskapikapandiktansonrakibekleme,
+                    cikiskapisisonrasibekleme = @cikiskapisisonrasibekleme,
+                    kupeokumasonrasibekleme = @kupeokumasonrasibekleme,
+                    sonagirlikbekleme = @sonagirlikbekleme
+                WHERE id = @id";
 
-            // Sorguyu yürütüyoruz
             var result = connection.Execute(sql, entity);
             return result;
         }

@@ -37,8 +37,13 @@ namespace CYS.Controllers
                     cikisHassasiyetAgirligi = result.cikisbeklemeagirligi,
                     kapi1agirlik = result.kapi1agirlik,
 					kapi2agirlik = result.kapi2agirlik,
-					kapi3agirlik = result.kapi3agirlik
-				});
+					kapi3agirlik = result.kapi3agirlik,
+                    girissonrasibekleme = result.girissonrasibekleme,
+                    giriskapikapandiktansonrakibekleme = result.giriskapikapandiktansonrakibekleme,
+                    cikiskapisisonrasibekleme = result.cikiskapisisonrasibekleme,
+                    kupeokumasonrasibekleme = result.kupeokumasonrasibekleme,
+                    sonagirlikbekleme = result.sonagirlikbekleme
+                });
             }
             else
             {

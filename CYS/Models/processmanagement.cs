@@ -22,6 +22,13 @@
 		public float kapi1agirlik { get; set; }
 		public float kapi2agirlik { get; set; }
 		public float kapi3agirlik { get; set; }
+        public int eklemeguncelleme { get; set; }
+        public int girissonrasibekleme { get; set; }
+        public int giriskapikapandiktansonrakibekleme { get; set; }
+        public int cikiskapisisonrasibekleme { get; set; }
+        public int kupeokumasonrasibekleme { get; set; }
+        public int sonagirlikbekleme { get; set; }
 
-	}
+
+    }
 }

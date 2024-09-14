@@ -24,12 +24,18 @@ public class ProcessHelperController : ControllerBase
 			request.CihazId,
 			request.Kapi1Agirlik,
 			request.Kapi2Agirlik,
-			request.Kapi3Agirlik
+			request.Kapi3Agirlik,
+			request.GirisSonrasiBekleme,
+			request.giriskapikapandiktansonrakibekleme,
+			request.CikisKapisiSonrasiBekleme,
+			request.KupeOkumaSonrasiBekleme,
+			request.SonAgirlikBekleme
 		);
 
 		// GUID'i geri döndürüyoruz
 		return Ok(new { guid = yeniGuid });
 	}
+
 
 
 	// GetProcessDataByGuid fonksiyonu
@@ -79,11 +85,19 @@ public class ProcessHelperController : ControllerBase
 // Request için bir model sınıfı oluşturuyoruz
 public class ProcessStartRequest
 {
-	public float GirisMax { get; set; }  // minimum hassasiyet
-	public float CikisMin { get; set; }  // çıkış bekleme hassasiyeti
-	public int CihazId { get; set; }     // Cihaz ID'si
-	public float Kapi1Agirlik { get; set; }  // Yön 1
-	public float Kapi2Agirlik { get; set; }  // Yön 2
-	public float Kapi3Agirlik { get; set; }  // Yön 3
+	public float GirisMax { get; set; }
+	public float CikisMin { get; set; }
+	public int CihazId { get; set; }
+	public float Kapi1Agirlik { get; set; }
+	public float Kapi2Agirlik { get; set; }
+	public float Kapi3Agirlik { get; set; }
+
+	// Yeni eklenen alanlar
+	public int GirisSonrasiBekleme { get; set; }
+	public int giriskapikapandiktansonrakibekleme { get; set; }
+	public int CikisKapisiSonrasiBekleme { get; set; }
+	public int KupeOkumaSonrasiBekleme { get; set; }
+	public int SonAgirlikBekleme { get; set; }
 }
+
 

@@ -1065,17 +1065,29 @@
 		var kapi2Agirlik = document.querySelector("input[name='kapi2Agirlik']").value;
 		var kapi3Agirlik = document.querySelector("input[name='kapi3Agirlik']").value;
 
+		// Yeni eklenen alanların değerlerini al
+		var girissonrasibekleme = document.querySelector("input[name='girissonrasibekleme']").value;
+		var giriskapikapandiktansonrakibekleme = document.querySelector("input[name='giriskapikapandiktansonrakibekleme']").value;
+		var kupeokumasonrasibekleme = document.querySelector("input[name='kupeokumasonrasibekleme']").value;
+		var cikiskapisisonrasibekleme = document.querySelector("input[name='cikiskapisisonrasibekleme']").value;
+		var sonagirlikbekleme = document.querySelector("input[name='sonagirlikbekleme']").value;
+
 		// Cihaz ID'si
 		var cihazid = 1;
 
-		// Giriş, çıkış ve yön ağırlıklarını float olarak al
+		// Giriş, çıkış ve yön ağırlıklarını ve yeni bilgileri float olarak al
 		var data = {
 			cihazid: cihazid,
 			girisMax: parseFloat(girisMax),
 			cikisMin: parseFloat(cikisMin),
 			kapi1Agirlik: parseFloat(kapi1Agirlik),
 			kapi2Agirlik: parseFloat(kapi2Agirlik),
-			kapi3Agirlik: parseFloat(kapi3Agirlik)
+			kapi3Agirlik: parseFloat(kapi3Agirlik),
+			girissonrasibekleme: parseFloat(girissonrasibekleme),
+			giriskapikapandiktansonrakibekleme: parseFloat(giriskapikapandiktansonrakibekleme),
+			kupeokumasonrasibekleme: parseFloat(kupeokumasonrasibekleme),
+			cikiskapisisonrasibekleme: parseFloat(cikiskapisisonrasibekleme),
+			sonagirlikbekleme: parseFloat(sonagirlikbekleme)
 		};
 
 		// AJAX ile backend'e post request gönderiyoruz

@@ -10,7 +10,7 @@ public class ProcessHelper
 	}
 
 	// Yeni süreç başlatırken girisMax ve cikisMin değerlerini alıyoruz
-	public string BaslaVeYeniSurecEkle(float girisMax, float cikisMin, int cihazId, float kapi1Agirlik, float kapi2Agirlik, float kapi3Agirlik)
+	public string BaslaVeYeniSurecEkle(float girisMax, float cikisMin, int cihazId, float kapi1Agirlik, float kapi2Agirlik, float kapi3Agirlik, int girisSonrasiBekleme, int giriskapikapandiktansonrakibekleme, int cikisKapisiSonrasiBekleme, int kupeOkumaSonrasiBekleme, int sonAgirlikBekleme)
 	{
 		// 1. CihazId'si belirtilen tüm kayıtların isTamamlandi değerini 1'e çeker
 		string updateQuery = "UPDATE processmanagement SET isTamamlandi = 1 WHERE cihazId = @cihazId AND isTamamlandi = 0";
@@ -36,7 +36,14 @@ public class ProcessHelper
 			hayvanid = -1,  // Henüz hayvan atanmadı
 			kapi1agirlik = kapi1Agirlik,  // Yön 1 ağırlığı
 			kapi2agirlik = kapi2Agirlik,  // Yön 2 ağırlığı
-			kapi3agirlik = kapi3Agirlik   // Yön 3 ağırlığı
+			kapi3agirlik = kapi3Agirlik,   // Yön 3 ağırlığı
+										   // Yeni eklenen alanlar
+			eklemeguncelleme = -1,
+			girissonrasibekleme = girisSonrasiBekleme,
+			giriskapikapandiktansonrakibekleme = giriskapikapandiktansonrakibekleme,
+			cikiskapisisonrasibekleme = cikisKapisiSonrasiBekleme,
+			kupeokumasonrasibekleme = kupeOkumaSonrasiBekleme,
+			sonagirlikbekleme = sonAgirlikBekleme
 		};
 
 		// 3. Yeni süreci veritabanına ekle
