@@ -121,5 +121,21 @@ namespace CYS.Controllers.WebApis
 
 		}
 
+		[HttpGet("GetByRfid")]
+		public IActionResult GetByRfid(string rfidKodu)
+		{
+			// Hayvan context kullanılarak hayvan sorgulaması yapılır.
+			HayvanCTX hctx = new HayvanCTX();
+			var hayvan = hctx.hayvanTekSadece("SELECT * FROM hayvan WHERE rfidKodu = @rfidKodu AND aktif = 1", new { rfidKodu = rfidKodu });
+
+			// Eğer hayvan bulunamazsa NotFound (404) döner.
+			if (hayvan == null)
+			{
+				return NotFound(new { message = "Hayvan bulunamadı." });
+			}
+
+			// Hayvan bulunduğunda 200 (OK) ve hayvan bilgisi döner.
+			return Ok(hayvan);
+		}
 	}
 }
