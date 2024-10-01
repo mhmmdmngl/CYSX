@@ -22,7 +22,7 @@ namespace CYS.Controllers
 		{
 			if(sessionKontrol() == false)
 				return RedirectToAction("GirisYap", "Login");
-			return View();
+			return RedirectToAction("MobilHayvanYonetimi", "MobilHayvan");
 		}
 
 		public IActionResult Ayarlar()

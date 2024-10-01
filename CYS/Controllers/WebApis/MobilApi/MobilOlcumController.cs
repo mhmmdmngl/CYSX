@@ -78,5 +78,13 @@ namespace CYS.Controllers
 			// SİLME İŞLEMİ OLUŞTURULMADI, isteğe göre eklenebilir.
 			return NoContent();
 		}
-	}
+
+        [HttpGet("GetLast20")]
+        public IActionResult GetLast20MobilOlcum()
+        {
+            MobilOlcumCTX ctx = new MobilOlcumCTX();
+            var data = ctx.MobilOlcumList("SELECT * FROM mobilolcum ORDER BY tarih DESC LIMIT 30", null);
+            return Ok(data);
+        }
+    }
 }
