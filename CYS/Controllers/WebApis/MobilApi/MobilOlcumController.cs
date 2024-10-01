@@ -45,7 +45,7 @@ namespace CYS.Controllers
 			}
 			_mobilOlcumCTX.MobilOlcumEkle(mobilOlcum);
 			return CreatedAtAction(nameof(GetById), new { id = mobilOlcum.Id }, mobilOlcum);
-		}
+		} 
 		// PUT: api/MobilOlcum/5
 		[HttpPut("{id}")]
 		public IActionResult Update(int id, [FromBody] MobilOlcum mobilOlcum)
