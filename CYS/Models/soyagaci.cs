@@ -9,8 +9,5 @@
 		public Hayvan hayvan { set; get; }
 
 		public int isActive { set; get; }
-
-
-
 	}
 }
