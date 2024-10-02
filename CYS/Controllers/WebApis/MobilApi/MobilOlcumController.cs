@@ -35,19 +35,31 @@ namespace CYS.Controllers
 			return Ok(result);
 		}
 
-		// POST: api/MobilOlcum
-		[HttpPost]
-		public IActionResult Create([FromBody] MobilOlcum mobilOlcum)
-		{
-			if (mobilOlcum == null)
-			{
-				return BadRequest();
-			}
-			_mobilOlcumCTX.MobilOlcumEkle(mobilOlcum);
-			return CreatedAtAction(nameof(GetById), new { id = mobilOlcum.Id }, mobilOlcum);
-		} 
-		// PUT: api/MobilOlcum/5
-		[HttpPut("{id}")]
+        [HttpPost]
+        public IActionResult Create([FromBody] MobilOlcum mobilOlcum)
+        {
+            if (mobilOlcum == null)
+            {
+                return BadRequest("MobilOlcum can't be null");
+            }
+
+            if (string.IsNullOrEmpty(mobilOlcum.Rfid))
+            {
+                return BadRequest("RFID is required");
+            }
+
+            if (mobilOlcum.Weight <= 0)
+            {
+                return BadRequest("Weight must be greater than 0");
+            }
+
+            mobilOlcum.Tarih = DateTime.Now; // Eğer tarih gönderilmemişse
+
+            _mobilOlcumCTX.MobilOlcumEkle(mobilOlcum);
+            return CreatedAtAction(nameof(GetById), new { id = mobilOlcum.Id }, mobilOlcum);
+        }
+        // PUT: api/MobilOlcum/5
+        [HttpPut("{id}")]
 		public IActionResult Update(int id, [FromBody] MobilOlcum mobilOlcum)
 		{
 			if (mobilOlcum == null || mobilOlcum.Id != id)
