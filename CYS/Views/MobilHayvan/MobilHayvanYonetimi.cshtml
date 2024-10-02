@@ -3,8 +3,12 @@
     ViewData["Title"] = "Ana Sayfa";
 }
 <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-    <!-- ... (mevcut içerik) ... -->
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Header-->
+    <div id="kt_header" style="" class="header align-items-stretch">
+        @await Component.InvokeAsync("HeaderBrand")
+        <!--end::Brand-->
+        @await Component.InvokeAsync("PageHeader", new { pageHeader = "Yönetim Paneli", pageTitle = "Hayvan", current = "Hayvan Listesi" })
+    </div>    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Son 20 Mobil Ölçüm</h3>
