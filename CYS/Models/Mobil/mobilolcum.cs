@@ -9,5 +9,6 @@
 		public int AmacId { get; set; }
 		public int HayvanId { get; set; }
 		public DateTime Tarih { get; set; }
+		public Hayvan hayvan { set; get; } = new Hayvan();
 	}
 }

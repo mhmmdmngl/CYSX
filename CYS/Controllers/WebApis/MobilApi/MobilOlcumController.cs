@@ -84,6 +84,11 @@ namespace CYS.Controllers
         {
             MobilOlcumCTX ctx = new MobilOlcumCTX();
             var data = ctx.MobilOlcumList("SELECT * FROM mobilolcum ORDER BY tarih DESC LIMIT 30", null);
+			HayvanCTX hctx = new HayvanCTX();
+			foreach(var item in data)
+			{
+				item.hayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @rf", new {rf = item.Rfid});
+			}
             return Ok(data);
         }
     }
