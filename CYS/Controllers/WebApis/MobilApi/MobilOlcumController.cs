@@ -83,7 +83,7 @@ namespace CYS.Controllers
         public IActionResult GetLast20MobilOlcum()
         {
             MobilOlcumCTX ctx = new MobilOlcumCTX();
-            var data = ctx.MobilOlcumList("SELECT * FROM mobilolcum ORDER BY tarih DESC LIMIT 30", null);
+            var data = ctx.MobilOlcumList("SELECT * FROM mobilolcum ORDER BY tarih DESC LIMIT 15", null);
 			HayvanCTX hctx = new HayvanCTX();
 			foreach(var item in data)
 			{
