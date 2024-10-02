@@ -73,7 +73,15 @@ namespace CYS.Controllers
 				return NotFound();
 			}
 
-			_mobilOlcumCTX.MobilOlcumGuncelle(mobilOlcum);
+			if (mobilOlcum.AmacId == 1)
+				mobilOlcum.Amac = "Normal Tartım";
+			else if (mobilOlcum.AmacId == 2)
+				mobilOlcum.Amac = "İlk Doğum Ağırlığı";
+            else if (mobilOlcum.AmacId == 3)
+                mobilOlcum.Amac = "Sütten Kesim";
+
+
+            _mobilOlcumCTX.MobilOlcumGuncelle(mobilOlcum);
 			return NoContent();
 		}
 

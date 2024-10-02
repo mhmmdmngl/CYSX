@@ -21,6 +21,8 @@
                                 <th>#</th>
                                 <th>RFID Kodu</th>
                                 <th>Ağırlık</th>
+                                <th>Amaç</th>
+
                                 <th>Tarih</th>
                                 <th>Cinsiyet</th>
                                 <th>Kategori</th>
@@ -53,6 +55,7 @@
                                             <td>${index + 1}</td>
                                             <td>${olcum.rfid}</td>
                                             <td>${olcum.weight} kg</td>
+                                                    <td>${olcum.Amac}</td>
                                             <td>${new Date(olcum.tarih).toLocaleString()}</td>
                                             <td>${olcum.hayvan ? olcum.hayvan.cinsiyet : 'N/A'}</td>
                                             <td>${olcum.hayvan && olcum.hayvan.kategori ? olcum.hayvan.kategori.kategoriAdi : 'N/A'}</td>
