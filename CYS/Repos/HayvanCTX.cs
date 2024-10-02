@@ -24,7 +24,7 @@ namespace CYS.Repos
 
                 foreach (var item in list)
                 {
-                    item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
+                    item.user = uctx.userTek("SELECT * FROM User WHERE id = @id", new { id = item.userId });
                     item.kategori = kctx.KategoriTek("SELECT * FROM Kategori WHERE id = @id", new { id = item.kategoriId });
                     item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from Hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
                 }
@@ -51,7 +51,7 @@ namespace CYS.Repos
                     var kctx = new KategoriCTX();
                     var hkuCTX = new HayvanKriterUnsurCTX();
 
-                    item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
+                    item.user = uctx.userTek("SELECT * FROM User WHERE id = @id", new { id = item.userId });
                     item.kategori = kctx.KategoriTek("SELECT * FROM Kategori WHERE id = @id", new { id = item.kategoriId });
                     item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from Hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
                 }
