@@ -23,7 +23,7 @@ namespace CYS.Repos
 
                 //foreach (var item in list)
                 //{
-                //    item.hayvan = hctx.hayvanTek("SELECT * FROM hayvan WHERE id = @id", new { id = item.hayvanId });
+                //    item.hayvan = hctx.hayvanTek("select * from Hayvan WHERE id = @id", new { id = item.hayvanId });
                 //    item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
                 //}
                 return list;
@@ -40,7 +40,7 @@ namespace CYS.Repos
                     HayvanCTX hctx = new HayvanCTX();
                     UserCTX uctx = new UserCTX();
 
-                    item.hayvan = hctx.hayvanTek("SELECT * FROM hayvan WHERE id = @id", new { id = item.hayvanId });
+                    item.hayvan = hctx.hayvanTek("select * from Hayvan WHERE id = @id", new { id = item.hayvanId });
                     item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
                 }
                 return item;

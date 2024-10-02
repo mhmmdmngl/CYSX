@@ -93,7 +93,7 @@ namespace CYS.Controllers
 
 				// Hayvanın ağırlığını güncelle
 				HayvanCTX hayvanCtx = new HayvanCTX();
-				Hayvan hayvan = hayvanCtx.hayvanTek("SELECT * FROM hayvan WHERE id = @id", new { id = result.hayvanid });
+				Hayvan hayvan = hayvanCtx.hayvanTek("select * from Hayvan WHERE id = @id", new { id = result.hayvanid });
 
 				if (hayvan != null)
 				{

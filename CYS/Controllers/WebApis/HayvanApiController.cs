@@ -30,7 +30,7 @@ namespace CYS.Controllers.WebApis
 			HayvanCTX hctx = new HayvanCTX();
 			AgirlikHayvanCTX ahctx = new AgirlikHayvanCTX();
 			kupehayvanCTX kaCTX = new kupehayvanCTX();
-			var hayvanVarMi = hctx.hayvanTekSadece("select * from hayvan where rfidKodu = @rfidKodu and aktif = 1", new { rfidKodu = rfidKodu });
+			var hayvanVarMi = hctx.hayvanTekSadece("select * from Hayvan where rfidKodu = @rfidKodu and aktif = 1", new { rfidKodu = rfidKodu });
 			if(hayvanVarMi != null)
 			{
 				if(hayvanVarMi.requestId == requestId || hayvanVarMi.sonGuncelleme > dt)
@@ -85,7 +85,7 @@ namespace CYS.Controllers.WebApis
 					requestId = requestId
 				};
 				var eklendiMi = hctx.hayvanEkle(hy);
-				hayvanVarMi = hctx.hayvanTekSadece("select * from hayvan where requestId = @requestId and aktif = 1", new { requestId = requestId });
+				hayvanVarMi = hctx.hayvanTekSadece("select * from Hayvan where requestId = @requestId and aktif = 1", new { requestId = requestId });
 				if (eklendiMi == 1)
 				{
 					pc.isSynced = 1;
@@ -126,7 +126,7 @@ namespace CYS.Controllers.WebApis
 		{
 			// Hayvan context kullanılarak hayvan sorgulaması yapılır.
 			HayvanCTX hctx = new HayvanCTX();
-			var hayvan = hctx.hayvanTekSadece("SELECT * FROM hayvan WHERE rfidKodu = @rfidKodu AND aktif = 1", new { rfidKodu = rfidKodu });
+			var hayvan = hctx.hayvanTekSadece("select * from Hayvan WHERE rfidKodu = @rfidKodu AND aktif = 1", new { rfidKodu = rfidKodu });
 
 			// Eğer hayvan bulunamazsa NotFound (404) döner.
 			if (hayvan == null)

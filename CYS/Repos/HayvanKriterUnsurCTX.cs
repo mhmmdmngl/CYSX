@@ -16,7 +16,7 @@ namespace CYS.Repos
 				foreach (var item in list)
 				{
 					item.kriterunsur = kctx.kriterUnsurTek("select * from kriterunsur where id = @id", new { id = item.kriterUnsurId });
-					//item.hayvan = hctx.hayvanTek("select * from hayvan where id = @id", new { id = item.hayvanId });
+					//item.hayvan = hctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.hayvanId });
 
 				}
 
@@ -34,7 +34,7 @@ namespace CYS.Repos
 				if (item != null)
 				{
 					item.kriterunsur = kctx.kriterUnsurTek("select * from kriterunsur where id = @id", new { id = item.kriterUnsurId });
-					//item.hayvan = hctx.hayvanTek("select * from hayvan where id = @id", new { id = item.hayvanId });
+					//item.hayvan = hctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.hayvanId });
 				}
 				return item;
 			}
@@ -44,7 +44,7 @@ namespace CYS.Repos
 		{
 			using (var connection = new MySqlConnection("Server=localhost;Database=CYS;User Id=root;Password=Muhamm3d!1;"))
 			{
-				var item = connection.Execute("insert into hayvankriterunsur (hayvanId, kriterUnsurId) values (@hayvanId, @kriterUnsurId)", kriter);
+				var item = connection.Execute("insert into Hayvankriterunsur (hayvanId, kriterUnsurId) values (@hayvanId, @kriterUnsurId)", kriter);
 				return item;
 			}
 		}

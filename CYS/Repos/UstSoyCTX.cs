@@ -14,8 +14,8 @@ namespace CYS.Repos
 				HayvanCTX uctx = new HayvanCTX();
 				foreach (var item in list)
 				{
-					item.ustHayvan = uctx.hayvanTek("select * from hayvan where id = @id", new { id = item.ustHayvanId });
-					item.hayvan = uctx.hayvanTek("select * from hayvan where id = @id", new { id = item.hayvanId });
+					item.ustHayvan = uctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.ustHayvanId });
+					item.hayvan = uctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.hayvanId });
 
 				}
 				return list;
@@ -30,8 +30,8 @@ namespace CYS.Repos
 				HayvanCTX uctx = new HayvanCTX();
 				if (item != null)
 				{
-					item.ustHayvan = uctx.hayvanTek("select * from hayvan where id = @id", new { id = item.ustHayvanId });
-					item.hayvan = uctx.hayvanTek("select * from hayvan where id = @id", new { id = item.hayvanId });
+					item.ustHayvan = uctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.ustHayvanId });
+					item.hayvan = uctx.hayvanTek("select * from Hayvan where id = @id", new { id = item.hayvanId });
 				}
 				return item;
 			}

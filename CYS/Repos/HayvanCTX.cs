@@ -26,7 +26,7 @@ namespace CYS.Repos
                 {
                     item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
                     item.kategori = kctx.KategoriTek("SELECT * FROM kategori WHERE id = @id", new { id = item.kategoriId });
-                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("SELECT * FROM hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
+                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from Hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
                 }
                 return list;
             }
@@ -53,7 +53,7 @@ namespace CYS.Repos
 
                     item.user = uctx.userTek("SELECT * FROM user WHERE id = @id", new { id = item.userId });
                     item.kategori = kctx.KategoriTek("SELECT * FROM kategori WHERE id = @id", new { id = item.kategoriId });
-                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("SELECT * FROM hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
+                    item.ozellikler = hkuCTX.HayvanKriterUnsurList("select * from Hayvankriterunsur WHERE hayvanId = @hayvanId AND isActive = 1", new { hayvanId = item.id });
                 }
                 return item;
             }
@@ -76,7 +76,7 @@ namespace CYS.Repos
 			{
 				// İlk sorgu: INSERT işlemini gerçekleştirir
 				const string insertQuery = @"
-			INSERT INTO hayvan 
+			insert into Hayvan 
 			(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId) 
 			VALUES 
 			(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId);";

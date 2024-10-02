@@ -46,7 +46,7 @@ namespace CYS.Controllers.WebApis
 			if (eid != "" && baslangicAgirligi == "0" && sonAgirlik == "0")
 			{
 				HayvanCTX hctx = new HayvanCTX();
-				ilgiliHayvan = hctx.hayvanTek("select * from hayvan where rfidKodu = @rfidKodu and aktif = 1", new { rfidKodu = eid });
+				ilgiliHayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @rfidKodu and aktif = 1", new { rfidKodu = eid });
 				if (ilgiliHayvan == null)
 				{
 					int toplam = 0;
@@ -68,7 +68,7 @@ namespace CYS.Controllers.WebApis
 					hctx.hayvanEkle(ilgiliHayvan);
 					mevcutguiddeVarMi.hayvanui = 1;
 
-					ilgiliHayvan = hctx.hayvanTek("select * from hayvan where rfidKodu = @eid", new { eid = eid });
+					ilgiliHayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @eid", new { eid = eid });
 					kupehayvanCTX kupehayvanCTX = new kupehayvanCTX();
 					kupehayvan kh = new kupehayvan()
 					{
@@ -99,7 +99,7 @@ namespace CYS.Controllers.WebApis
 			{
 				var varMi = asuctx.agirliksuTek("select * from agirliksu where reqestId = @requestId", new { requestId = ps.mevcutRequest });
 				HayvanCTX hctx = new HayvanCTX();
-				ilgiliHayvan = hctx.hayvanTek("select * from hayvan where rfidKodu = @rfidKodu", new { rfidKodu = eid });
+				ilgiliHayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @rfidKodu", new { rfidKodu = eid });
 				
 				if (varMi != null)
 				{
@@ -125,7 +125,7 @@ namespace CYS.Controllers.WebApis
 			{
 				var varMi = asuctx.agirliksuTek("select * from agirliksu where reqestId = @requestId", new { requestId = ps.mevcutRequest });
 				HayvanCTX hctx = new HayvanCTX();
-				ilgiliHayvan = hctx.hayvanTek("select * from hayvan where rfidKodu = @rfidKodu", new { rfidKodu = eid });
+				ilgiliHayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @rfidKodu", new { rfidKodu = eid });
 				if (varMi != null)
 				{
 					varMi.sonOlcum = sonAgirlik;
