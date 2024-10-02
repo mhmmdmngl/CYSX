@@ -53,7 +53,7 @@ namespace CYS.Controllers
                 return BadRequest("Weight must be greater than 0");
             }
 
-            mobilOlcum.Tarih = DateTime.Now; // Eğer tarih gönderilmemişse
+            //mobilOlcum.Tarih = DateTime.Now; // Eğer tarih gönderilmemişse
 
             _mobilOlcumCTX.MobilOlcumEkle(mobilOlcum);
             return CreatedAtAction(nameof(GetById), new { id = mobilOlcum.Id }, mobilOlcum);
