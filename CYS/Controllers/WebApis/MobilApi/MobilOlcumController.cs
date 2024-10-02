@@ -113,7 +113,13 @@ namespace CYS.Controllers
 			foreach(var item in data)
 			{
 				item.hayvan = hctx.hayvanTek("select * from Hayvan where rfidKodu = @rf", new {rf = item.Rfid});
-			}
+                if (item.AmacId == 1)
+                    item.Amac = "Normal Tartım";
+                else if (item.AmacId == 2)
+                    item.Amac = "İlk Doğum Ağırlığı";
+                else if (item.AmacId == 3)
+                    item.Amac = "Sütten Kesim";
+            }
             return Ok(data);
         }
     }
