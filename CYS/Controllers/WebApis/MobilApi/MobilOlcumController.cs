@@ -54,7 +54,12 @@ namespace CYS.Controllers
             }
 
             //mobilOlcum.Tarih = DateTime.Now; // Eğer tarih gönderilmemişse
-
+            if (mobilOlcum.AmacId == 1)
+                mobilOlcum.Amac = "Normal Tartım";
+            else if (mobilOlcum.AmacId == 2)
+                mobilOlcum.Amac = "İlk Doğum Ağırlığı";
+            else if (mobilOlcum.AmacId == 3)
+                mobilOlcum.Amac = "Sütten Kesim";
             _mobilOlcumCTX.MobilOlcumEkle(mobilOlcum);
             return CreatedAtAction(nameof(GetById), new { id = mobilOlcum.Id }, mobilOlcum);
         }
