@@ -6,5 +6,6 @@
 		public string kriterAdi { get; set; }
 		public int isActive { get; set; }
 		public string badge { set; get; }
+		public List<KriterUnsur> unsurlar { get; set;}
 	}
 }

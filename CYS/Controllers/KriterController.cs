@@ -37,7 +37,7 @@ namespace CYS.Controllers
 		public IActionResult kriterUnsurEkleJson(string kunName, int kriterId)
 		{
 			KriterUnsurCTX kctx = new KriterUnsurCTX();
-			KriterUnsur kriter = new KriterUnsur() { unsurAdi = kunName, kriterId = kriterId };
+			KriterUnsur kriter = new KriterUnsur() {  unsurAdi= kunName, kriterId = kriterId };
 			kctx.KriterUnsurEkle(kriter);
 			return Json(new { status = "success", message = "Ekleme işlemi başarılı" });
 		}
