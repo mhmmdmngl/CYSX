@@ -77,9 +77,9 @@ namespace CYS.Repos
 				// İlk sorgu: INSERT işlemini gerçekleştirir
 				const string insertQuery = @"
 			insert into Hayvan 
-			(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId) 
+			(rfidKodu, kupeIsmi, cinsiyet, agirlik, userId, kategoriId, requestId, ilkdogumagirligi, suttenkesimagirligi) 
 			VALUES 
-			(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId);";
+			(@rfidKodu, @kupeIsmi, @cinsiyet, @agirlik, @userId, @kategoriId, @requestId, @ilkdogumagirligi, @suttenkesimagirligi);";
 
 				// INSERT işlemi
 				connection.Execute(insertQuery, hayvan);
@@ -109,7 +109,9 @@ namespace CYS.Repos
 						userId = @userId, 
 						kategoriId = @kategoriId, 
 						aktif = @aktif, 
-						requestId = @requestId 
+						requestId = @requestId ,
+                        ilkdogumagirligi= @ilkdogumagirligi , 
+                        suttenkesimagirligi = @suttenkesimagirligi
 					WHERE id = @id";
 
                 return connection.Execute(query, hayvan);
